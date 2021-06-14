@@ -13,7 +13,7 @@
             <column name="CITY" type="varchar(100)">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="DATETIME" type="timestamp">
+            <column name="DATE_TIME" type="timestamp">
                 <constraints nullable="false"/>
             </column>
             <column name="TEMPERATURE" type="int">
