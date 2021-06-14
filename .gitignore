@@ -4,6 +4,8 @@
 .idea/**/*
 **/.idea
 .idea\**\*
+*.iml
+**/*.iml
 
 # Ignore Gradle build output directory
 build
