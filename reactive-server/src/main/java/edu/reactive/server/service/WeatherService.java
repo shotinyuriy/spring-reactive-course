@@ -3,16 +3,15 @@ package edu.reactive.server.service;
 import edu.reactive.server.converter.WeatherDataToCityWeatherResponseConverter;
 import edu.reactive.server.repository.WeatherDataRepository;
 import edu.reactive.server.rest.CityWeatherResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.OffsetDateTime;
-import java.time.ZoneOffset;
-import java.util.Date;
 
+@Slf4j
 @Service
 public class WeatherService {
 
