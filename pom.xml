@@ -80,10 +80,12 @@
         </plugins>
     </build>
 
-<!--    <modules>-->
-<!--        <module>reactive-client</module>-->
-<!--        <module>reactive-server</module>-->
-<!--    </modules>-->
+    <modules>
+        <module>h2-db</module>
+        <module>reactive-server</module>
+        <module>reactive-client</module>
+
+    </modules>
 
     <reporting>
         <plugins>
