@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+	  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="01-create-schema" author="iushotin@neoflex.ru" context="all">
+        <createTable tableName="WEATHER_DATA">
+            <column name="WEATHER_DATA_ID" type="bigint(10)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="CITY" type="varchar(100)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="DATETIME" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TEMPERATURE" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

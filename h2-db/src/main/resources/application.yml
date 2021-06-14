@@ -1,0 +1,28 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true
+    database-platform: org.hibernate.dialect.H2Dialect
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+  datasource:
+    url: jdbc:h2:mem:weatherdb
+    platform: h2
+    continue-on-error: true
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  liquibase:
+    enabled: true
+    change-log: classpath:db/weather-db.xml
+  h2:
+    console:
+      enabled: true
+      settings:
+        trace: false
+        web-allow-others: true
+    port: 5432
+server:
+  port: 10001
