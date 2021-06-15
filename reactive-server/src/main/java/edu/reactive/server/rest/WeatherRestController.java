@@ -12,6 +12,8 @@ import reactor.core.publisher.Flux;
 
 import java.time.LocalDate;
 
+import static log.util.LogUtil.encode;
+
 @Slf4j
 @RestController
 @RequestMapping("/weather")
@@ -20,15 +22,20 @@ public class WeatherRestController {
     @Autowired
     private WeatherService weatherService;
 
+    @GetMapping(value = "/cities", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Flux<String> cities() {
+        return weatherService.cities();
+    }
+
     @GetMapping(value = "/{city}/from/{startDate}/to/{endDate}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<CityWeatherResponse> cityWeatherBetweenDates(@PathVariable String city, @PathVariable String startDate, @PathVariable String endDate) {
-        log.info("displaying weather for city={}, between {} and {}", city, startDate, endDate);
+        log.info("displaying weather for city={}, between {} and {}", encode(city), startDate, endDate);
         return weatherService.cityWeatherBetweenDates(city, LocalDate.parse(startDate), LocalDate.parse(endDate));
     }
 
     @GetMapping(value = "/{city}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Flux<CityWeatherResponse> cityWeather(@PathVariable String city) {
-        log.info("displaying weather for city={}", city);
+        log.info("displaying weather for city={}", encode(city));
         return weatherService.cityWeather(city);
     }
 }

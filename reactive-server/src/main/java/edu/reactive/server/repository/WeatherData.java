@@ -8,18 +8,18 @@ import org.springframework.data.relational.core.mapping.Table;
 import java.time.LocalDateTime;
 
 @Data
-@Table("\"WEATHER_DATA\"")
+@Table("weather_data")
 public class WeatherData {
     @Id
-    @Column("WEATHER_DATA_ID")
+    @Column("weather_data_id")
     private Long id;
 
-    @Column("CITY")
+    @Column("city")
     private String city;
 
-    @Column("DATE_TIME")
+    @Column("date_time")
     private LocalDateTime dateTime;
 
-    @Column("TEMPERATURE")
+    @Column("temperature")
     private Integer temperature;
 }

@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -21,6 +23,10 @@ public class WeatherService {
     @Autowired
     private WeatherDataToCityWeatherResponseConverter converter;
 
+    public Flux<String> cities() {
+        return  weatherDataRepository.findUniqueCities();
+    }
+
     public Flux<CityWeatherResponse> cityWeather(String city) {
         return weatherDataRepository.findAll()
                 .filter(weatherData -> weatherData.getCity().equals(city))
@@ -28,6 +34,15 @@ public class WeatherService {
     }
 
     public Flux<CityWeatherResponse> cityWeatherBetweenDates(String city, LocalDate startDate, LocalDate endDate) {
+        LocalDateTime startDateTime = startDate.atTime(0,0);
+        LocalDateTime endDateTime = endDate.atTime(23,59, 59, 999999);
+
+        return weatherDataRepository.findByCityAndDateTimeBetween(city, startDateTime, endDateTime)
+                .map(converter::convert);
+
+    }
+
+    public Flux<CityWeatherResponse> cityWeatherBetweenDates_old(String city, LocalDate startDate, LocalDate endDate) {
         LocalDateTime offsetStartDate = startDate.atTime(0,0);
         LocalDateTime offsetEndDate = endDate.atTime(23,59, 59, 999999);
 
