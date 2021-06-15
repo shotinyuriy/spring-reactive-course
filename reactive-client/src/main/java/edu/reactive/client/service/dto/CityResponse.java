@@ -1,4 +1,4 @@
-package edu.reactive.client.service;
+package edu.reactive.client.service.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

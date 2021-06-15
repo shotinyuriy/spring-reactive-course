@@ -32,7 +32,7 @@
 <span><a href="?city={{name}}">{{name}}</a></span>
 {{/cities}}
 
-
+{{#city?}}
 <table class="table">
     <caption>Погода в городе {{city}}</caption>
     <thead>
@@ -42,7 +42,7 @@
     <tr><td colspan="3" class="divider"></td></tr>
     {{#weatherByDate}}
     <tr>
-        <td rowspan="4">{{localDate}}</td>
+        <td rowspan="{{cityWeatherOnDate.size}}">{{localDate}}</td>
         {{#cityWeatherOnDate}}
             <td>{{time}}</td>
             <td>{{temperature}}<td>
@@ -54,5 +54,11 @@
     {{/weatherByDate}}
     </tbody>
 </table>
+{{/city?}}
+{{^city}}
+<table class="table">
+    <caption>... Выберите город ...</caption>
+</table>
+{{/city}}
 </body>
 </html>

@@ -1,16 +1,15 @@
 package edu.reactive.client.view;
 
-import edu.reactive.client.service.CityWeatherResponse;
+import edu.reactive.client.service.dto.CityWeatherResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import reactor.core.publisher.Flux;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.SortedSet;
 
 @AllArgsConstructor
 @Getter
 public class WeatherOnDate {
     LocalDate localDate;
-    List<CityWeatherResponse> cityWeatherOnDate;
+    SortedSet<CityWeatherResponse> cityWeatherOnDate;
 }

@@ -1,5 +1,7 @@
 package edu.reactive.client.service;
 
+import edu.reactive.client.service.dto.CityResponse;
+import edu.reactive.client.service.dto.CityWeatherResponse;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;

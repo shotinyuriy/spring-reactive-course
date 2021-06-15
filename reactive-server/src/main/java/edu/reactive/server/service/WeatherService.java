@@ -21,6 +21,8 @@ import java.util.concurrent.atomic.AtomicReference;
 @Service
 public class WeatherService {
 
+    public static final int HOURS_STEP = 6;
+
     @Autowired
     private WeatherDataRepository weatherDataRepository;
 
@@ -50,10 +52,10 @@ public class WeatherService {
                     weatherData.setCity(city);
                     weatherData.setDateTime(dateTime.get());
                     weatherData.setTemperature(random.nextInt(40));
+                    dateTime.set(dateTime.get().plusHours(HOURS_STEP));
                     return weatherData;
                 })
                 .flatMap(weatherData -> r2dbcEntityTemplate.insert(weatherData))
-                .doOnNext(savedWeatherData -> dateTime.set(dateTime.get().plusHours(3)))
                 .then(Mono.just(true));
     }
 
