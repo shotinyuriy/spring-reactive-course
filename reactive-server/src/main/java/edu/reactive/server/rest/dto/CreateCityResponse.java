@@ -1,4 +1,4 @@
-package edu.reactive.server.rest;
+package edu.reactive.server.rest.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

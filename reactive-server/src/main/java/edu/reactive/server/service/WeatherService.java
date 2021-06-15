@@ -3,7 +3,8 @@ package edu.reactive.server.service;
 import edu.reactive.server.converter.WeatherDataToCityWeatherResponseConverter;
 import edu.reactive.server.repository.WeatherData;
 import edu.reactive.server.repository.WeatherDataRepository;
-import edu.reactive.server.rest.CityWeatherResponse;
+import edu.reactive.server.rest.dto.CityResponse;
+import edu.reactive.server.rest.dto.CityWeatherResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
@@ -31,8 +32,10 @@ public class WeatherService {
 
     private Random random = new Random(System.nanoTime());
 
-    public Flux<String> cities() {
-        return weatherDataRepository.findUniqueCities();
+    public Flux<CityResponse> cities() {
+        return weatherDataRepository
+                .findUniqueCities()
+                .map(city -> new CityResponse(city));
     }
 
     public Mono<Boolean> createCityAndGenerateWeatherData(String city, int weatherDataCount) {

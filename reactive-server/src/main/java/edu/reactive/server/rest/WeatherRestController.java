@@ -1,5 +1,6 @@
 package edu.reactive.server.rest;
 
+import edu.reactive.server.rest.dto.*;
 import edu.reactive.server.service.WeatherService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class WeatherRestController {
     private WeatherService weatherService;
 
     @GetMapping(value = "/cities", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Flux<String> cities() {
+    public Flux<CityResponse> cities() {
         return weatherService.cities();
     }
 

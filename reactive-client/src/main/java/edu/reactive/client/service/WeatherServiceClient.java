@@ -21,4 +21,10 @@ public class WeatherServiceClient {
                 .retrieve()
                 .bodyToFlux(CityWeatherResponse.class);
     }
+
+    public Flux<CityResponse> cities() {
+        return webClient.get().uri("/weather/cities")
+                .retrieve()
+                .bodyToFlux(CityResponse.class);
+    }
 }

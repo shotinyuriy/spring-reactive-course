@@ -5,21 +5,54 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+    * {
+        font-family: Calibri,Arial;
+        padding: 5px;
+    }
+    .table {
+        width: 360px;
+        padding-top: 10px;
+    }
+    .table > tbody > tr > td {
+        text-align: center;
+    }
+    td.divider {
+        border: 1px solid #111;
+        height: 0px;
+        padding: 0;
+    }
+
+    </style>
     <title>Weather Site</title>
 </head>
 <body>
 
-<p><a href="?city=Саратов">Погода в Саратове</a></p>
-<p><a href="?city=Энгельс">Погода в Энгельсе</a></p>
+{{#cities}}
+<span><a href="?city={{name}}">{{name}}</a></span>
+{{/cities}}
 
-{{city}}
-<ol>
-    {{#cityWeather}}
-    <li>
-        {{dateTime}}
-        {{temperature}}
-    </li>
-    {{/cityWeather}}
-</ol>
+
+<table class="table">
+    <caption>Погода в городе {{city}}</caption>
+    <thead>
+    <tr><th>Дата</th><th>Время</th><th>Температура</th></tr>
+    </thead>
+    <tbody>
+    <tr><td colspan="3" class="divider"></td></tr>
+    {{#weatherByDate}}
+    <tr>
+        <td rowspan="4">{{localDate}}</td>
+        {{#cityWeatherOnDate}}
+            <td>{{time}}</td>
+            <td>{{temperature}}<td>
+        </tr>
+        <tr>
+        {{/cityWeatherOnDate}}
+            <td colspan="3" class="divider"></td>
+    </tr>
+    {{/weatherByDate}}
+    </tbody>
+</table>
 </body>
 </html>
