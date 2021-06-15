@@ -1,5 +1,6 @@
+DROP TABLE weather_data;
 CREATE TABLE IF NOT EXISTS weather_data (
-    weather_data_id bigint PRIMARY KEY,
+    weather_data_id serial PRIMARY KEY,
     city character varying(100) NOT NULL,
     date_time timestamp NOT NULL,
     temperature integer NOT NULL
