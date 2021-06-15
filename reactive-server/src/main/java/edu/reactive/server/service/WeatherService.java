@@ -6,6 +6,7 @@ import edu.reactive.server.repository.WeatherDataRepository;
 import edu.reactive.server.rest.CityWeatherResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.r2dbc.core.R2dbcEntityTemplate;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -21,6 +22,9 @@ public class WeatherService {
 
     @Autowired
     private WeatherDataRepository weatherDataRepository;
+
+    @Autowired
+    private R2dbcEntityTemplate r2dbcEntityTemplate;
 
     @Autowired
     private WeatherDataToCityWeatherResponseConverter converter;
@@ -45,7 +49,7 @@ public class WeatherService {
                     weatherData.setTemperature(random.nextInt(40));
                     return weatherData;
                 })
-                .flatMap(weatherData -> weatherDataRepository.save(weatherData))
+                .flatMap(weatherData -> r2dbcEntityTemplate.insert(weatherData))
                 .doOnNext(savedWeatherData -> dateTime.set(dateTime.get().plusHours(3)))
                 .then(Mono.just(true));
     }
@@ -61,19 +65,6 @@ public class WeatherService {
         LocalDateTime endDateTime = endDate.atTime(23, 59, 59, 999999);
 
         return weatherDataRepository.findByCityAndDateTimeBetween(city, startDateTime, endDateTime)
-                .map(converter::convert);
-
-    }
-
-    public Flux<CityWeatherResponse> cityWeatherBetweenDates_old(String city, LocalDate startDate, LocalDate endDate) {
-        LocalDateTime offsetStartDate = startDate.atTime(0, 0);
-        LocalDateTime offsetEndDate = endDate.atTime(23, 59, 59, 999999);
-
-        return weatherDataRepository.findAll()
-                .filter(weatherData -> weatherData.getCity().equals(city)
-                        && (weatherData.getDateTime().isEqual(offsetStartDate) || weatherData.getDateTime().isAfter(offsetStartDate))
-                        && (weatherData.getDateTime().isEqual(offsetEndDate) || weatherData.getDateTime().isAfter(offsetEndDate))
-                )
                 .map(converter::convert);
 
     }

@@ -11,7 +11,6 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class CreateWeatherDataRequest {
-    @NotNull
     @Min(1)
     Long id;
 
