@@ -1,0 +1,189 @@
+{
+	"info": {
+		"_postman_id": "00bd8a1e-b3ae-4d93-a697-42ff75a576ef",
+		"name": "Weather Data",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Saratov 2021-07-01 and 2021-07-02",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/weather/Саратов/from/2021-07-01/to/2021-07-02",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"weather",
+						"Саратов",
+						"from",
+						"2021-07-01",
+						"to",
+						"2021-07-02"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Saratov",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/weather/Саратов",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"weather",
+						"Саратов"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cities",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/weather/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"weather",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cities Пенза",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"Пенза\",\r\n    \"weatherDataCount\": 12\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/weather/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"weather",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cities Москва",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"Москва\",\r\n    \"weatherDataCount\": 12\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/weather/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"weather",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "cities Воронеж",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"city\": \"Воронеж\",\r\n    \"weatherDataCount\": 24\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/weather/cities",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"weather",
+						"cities"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 37,\r\n    \"city\": \"Пенза\",\r\n    \"date\": \"2021-07-01\",\r\n    \"hour\": 0,\r\n    \"temperature\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/weather/data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"weather",
+						"data"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
