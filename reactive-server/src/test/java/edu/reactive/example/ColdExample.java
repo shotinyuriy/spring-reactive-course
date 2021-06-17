@@ -6,12 +6,12 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HotExample {
+public class ColdExample {
     public static void main(String[] args) throws InterruptedException {
         List<Long> elements1 = new ArrayList<>();
         List<Long> elements2 = new ArrayList<>();
         List<Long> elements3 = new ArrayList<>();
-        Flux<Long> hot = Flux.interval(Duration.ofMillis(10)).share();
+        Flux<Long> hot = Flux.interval(Duration.ofMillis(10));
 
         hot.subscribe(elements1::add);
         Thread.sleep(50);
