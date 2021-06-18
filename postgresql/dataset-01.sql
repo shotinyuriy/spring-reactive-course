@@ -1,4 +1,4 @@
-DROP TABLE weather_data;
+DROP TABLE IF EXISTS weather_data;
 CREATE TABLE IF NOT EXISTS weather_data (
     weather_data_id serial PRIMARY KEY,
     city character varying(100) NOT NULL,
