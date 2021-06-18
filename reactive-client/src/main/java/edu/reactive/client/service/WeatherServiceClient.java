@@ -12,8 +12,6 @@ public class WeatherServiceClient {
 
     private final WebClient webClient;
 
-
-
     public WeatherServiceClient(@Value("${weather-service.base-url}") String baseUrl) {
         webClient = WebClient.builder().baseUrl(baseUrl).build();
     }

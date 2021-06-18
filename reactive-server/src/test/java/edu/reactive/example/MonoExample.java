@@ -32,5 +32,12 @@ public class MonoExample {
                 });
         Thread.sleep(1);
         System.out.println("elements are="+elements);
+
+        Mono.just(10)
+                .filter(i -> i > 1)
+                .cast(Long.class)
+                .map(i -> i * 2)
+                .share()
+                .subscribe();
     }
 }

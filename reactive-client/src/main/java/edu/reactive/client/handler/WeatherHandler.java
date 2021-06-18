@@ -37,7 +37,6 @@ public class WeatherHandler {
                                     .map(groupedByDate -> new WeatherOnDate(groupedByDate.getKey(), new TreeSet<>(groupedByDate.getValue())))
                                     .sorted(Comparator.comparing(WeatherOnDate::getLocalDate))
                                     .collect(Collectors.toList()));
-
             return ServerResponse
                     .ok()
                     .render("index", Map.of(
@@ -49,9 +48,7 @@ public class WeatherHandler {
         } else {
             return ServerResponse
                     .ok()
-                    .render("index", Map.of(
-                            "cities", cities)
-                    );
+                    .render("index", Map.of("cities", cities));
         }
 
 
