@@ -30,7 +30,8 @@ public class WeatherServiceClient {
     public Flux<CityWeatherResponse> cityWeather(String city) {
         return webClient.get().uri("/weather/{city}", city)
                 .retrieve()
-                .bodyToFlux(CityWeatherResponse.class);
+                .bodyToFlux(CityWeatherResponse.class)
+                .limitRate(4);
     }
 
     public Flux<CityResponse> cities() {

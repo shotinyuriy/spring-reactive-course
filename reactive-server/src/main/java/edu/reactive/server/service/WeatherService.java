@@ -62,6 +62,7 @@ public class WeatherService {
     public Flux<CityWeatherResponse> cityWeather(String city) {
         return weatherDataRepository.findAll()
                 .filter(weatherData -> weatherData.getCity().equals(city))
+                .limitRate(4)
                 .map(converter::convert);
     }
 
