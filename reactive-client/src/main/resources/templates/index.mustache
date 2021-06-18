@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -23,6 +24,9 @@
         padding: 0;
     }
 
+
+
+
     </style>
     <title>Weather Site</title>
 </head>
@@ -32,24 +36,46 @@
 <span><a href="?city={{name}}">{{name}}</a></span>
 {{/cities}}
 
+<form action="/cities">
+    <span>
+        <span>Новый город:</span><input name="city" id="new-city">
+        <span>Количество данных:</span>
+        <select name="weatherDataCount" id="weather-data-count">
+            <option value=12>12</option>
+            <option value=24>24</option>
+            <option value=36>36</option>
+            <option value=48>48</option>
+            <option value=60>60</option>
+        </select>
+        <input type="submit" value="Создать">
+    </span>
+</form>
+
 {{#city?}}
 <table class="table">
     <caption>Погода в городе {{city}}</caption>
     <thead>
-    <tr><th>Дата</th><th>Время</th><th>Температура</th></tr>
+    <tr>
+        <th>Дата</th>
+        <th>Время</th>
+        <th>Температура</th>
+    </tr>
     </thead>
     <tbody>
-    <tr><td colspan="3" class="divider"></td></tr>
+    <tr>
+        <td colspan="3" class="divider"></td>
+    </tr>
     {{#weatherByDate}}
     <tr>
         <td rowspan="{{cityWeatherOnDate.size}}">{{localDate}}</td>
         {{#cityWeatherOnDate}}
-            <td>{{time}}</td>
-            <td>{{temperature}}<td>
-        </tr>
-        <tr>
+        <td>{{time}}</td>
+        <td>{{temperature}}
+        <td>
+    </tr>
+    <tr>
         {{/cityWeatherOnDate}}
-            <td colspan="3" class="divider"></td>
+        <td colspan="3" class="divider"></td>
     </tr>
     {{/weatherByDate}}
     </tbody>
@@ -60,5 +86,28 @@
     <caption>... Выберите город ...</caption>
 </table>
 {{/city}}
+<script language="JavaScript">
+$( "form" ).on( "submit", function( event ) {
+    event.preventDefault();
+    var formData = {
+        city: $( "#new-city" ).val(),
+        weatherDataCount: $( "#weather-data-count" ).val(),
+    }
+    console.log( 'formData', formData );
+    $.ajax({
+        url: '/cities',
+        type: 'POST',
+        data: JSON.stringify(formData),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        async: true,
+        success: function(msg) {
+            console.log(msg);
+            document.location = '/';
+        }
+    });
+});
+
+</script>
 </body>
 </html>

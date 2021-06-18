@@ -2,6 +2,7 @@ package edu.reactive.client.handler;
 
 import edu.reactive.client.service.dto.CityResponse;
 import edu.reactive.client.service.WeatherServiceClient;
+import edu.reactive.client.service.dto.CreateCityRequest;
 import edu.reactive.client.view.WeatherOnDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -50,7 +51,15 @@ public class WeatherHandler {
                     .ok()
                     .render("index", Map.of("cities", cities));
         }
+    }
 
-
+    public Mono<ServerResponse> createCity(ServerRequest request) {
+        Flux<CityResponse> cities = weatherServiceClient.cities();
+        return request
+                .bodyToMono(CreateCityRequest.class)
+                .flatMap(createCityRequest -> weatherServiceClient.createCity(createCityRequest))
+                .flatMap(result -> ServerResponse
+                        .ok()
+                        .render("index", Map.of("cities", cities)));
     }
 }
