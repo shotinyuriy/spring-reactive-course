@@ -28,7 +28,6 @@ import java.util.Map;
 @Component
 public class RequestBodyWebFilter implements WebFilter {
     private static final ObjectMapper OBJECT_MAPPER = makeMapper();
-    private static final Logger LOGGER = LoggerFactory.getLogger(RequestBodyWebFilter.class);
 
     private static ObjectMapper makeMapper() {
         return new ObjectMapper()
@@ -57,7 +56,7 @@ public class RequestBodyWebFilter implements WebFilter {
                                     Channels.newChannel(commonBuffer).write(buf.asByteBuffer().asReadOnlyBuffer());
                                 }
                                 message = commonBuffer.toString(StandardCharsets.UTF_8);
-                                LOGGER.info("Controller received a request {}", new String(message.getBytes(StandardCharsets.UTF_8)));
+                                log.info("Controller received a request {}", message);
                                 var request = parseRequest(message);
                                 validateFieldsAsArray(request);
                             } catch (IOException e) {
@@ -81,7 +80,7 @@ public class RequestBodyWebFilter implements WebFilter {
     private Map parseRequest(final String message) throws JsonProcessingException {
         try {
             final Map request = OBJECT_MAPPER.readValue(message, Map.class);
-            LOGGER.debug("Controller request was parsed as: {}", request);
+            log.debug("Controller request was parsed as: {}", request);
             return request;
         } catch (JsonProcessingException e) {
             throw new WebFilterException("Invalid JSON format");

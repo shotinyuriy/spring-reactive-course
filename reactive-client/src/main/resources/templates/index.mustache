@@ -31,14 +31,15 @@
     <title>Weather Site</title>
 </head>
 <body>
-
+<h1>Страница с данными о погоде в городах</h1>
+<p>Позволяет генерировать и отображать данные о погоде в выбранном городе</p>
 {{#cities}}
 <span><a href="?city={{name}}">{{name}}</a></span>
 {{/cities}}
 
 <form action="/cities">
     <span>
-        <span>Новый город:</span><input name="city" id="new-city">
+        <span>Город:</span><input name="city" id="new-city">
         <span>Количество данных:</span>
         <select name="weatherDataCount" id="weather-data-count">
             <option value=12>12</option>
@@ -47,7 +48,7 @@
             <option value=48>48</option>
             <option value=60>60</option>
         </select>
-        <input type="submit" value="Создать">
+        <input type="submit" value="Сгенерировать данные">
     </span>
 </form>
 

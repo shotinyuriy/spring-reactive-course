@@ -71,3 +71,10 @@ mvnw clean spring-boot:run
 # Windows
 mvnw.cmd clean spring-boot:run
 ```
+
+### Проверка работы приложения:
+В браузере перейти на страницу http://localhost:8082/
+
+Вы должны увидеть примерно следующую страницу:
+
+![img.png](img/weather-site-example.png)
