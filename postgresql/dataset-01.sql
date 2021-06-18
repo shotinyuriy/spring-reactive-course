@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS weather_data (
     temperature integer NOT NULL
 );
 
-TRUNCATE TABLE weather_data;
+TRUNCATE TABLE weather_data; -- это действие необязательно, так как всегда удаляем базу данных
 INSERT INTO weather_data (weather_data_id, city, date_time, temperature) VALUES (1, 'Саратов', '2021-07-01 00:00:00.000', 20);
 INSERT INTO weather_data (weather_data_id, city, date_time, temperature) VALUES (2, 'Саратов', '2021-07-01 06:00:00.000', 21);
 INSERT INTO weather_data (weather_data_id, city, date_time, temperature) VALUES (3, 'Саратов', '2021-07-01 12:00:00.000', 22);
